@@ -1,6 +1,7 @@
 package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -17,7 +18,9 @@ public class DriverFactory {
         //String value = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
         String value = ConfigReader.getProperties().getProperty("browser");
         if (value.equals("Chrome")) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+            driver = new ChromeDriver(options);
 
         } else if (value.equals("Firefox")) {
             driver = new FirefoxDriver();
