@@ -1,5 +1,3 @@
-@debug
-
 Feature: Search Item
   Scenario: Search some value
     When Write "sofware" to search input

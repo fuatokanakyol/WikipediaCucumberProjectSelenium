@@ -2,14 +2,12 @@ package stepDefinitions;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import pages.WikipediaHomePage;
-import pages.WikipediaLoginPage;
+import pages.LoginPage;
 import utils.DriverFactory;
 public class LoginPageSteps {
 
     WebDriver driver = DriverFactory.getDriver();
-    WikipediaHomePage pg = new WikipediaHomePage(driver);
-    WikipediaLoginPage loginpage =new WikipediaLoginPage(driver);
+    LoginPage loginpage =new LoginPage(driver);
 
     @When("Check Login Button")
     public void check_login_button() {
@@ -34,23 +32,14 @@ public class LoginPageSteps {
         loginpage.checkErrorMessage();
     }
 
-    @When("Write Valid UserName {string}")
-    public void writeValidUserName(String validUsername) {
-        loginpage.validUserNameYaz(validUsername);
+
+
+    @When("Write UserName {string}")
+    public void writeUserName(String username) {
+        loginpage.userNameYaz(username);
     }
 
-    @When("Write ValidPassword {string}")
-    public void writeValidPassword(String userName) {
-        loginpage.validPasswordYaz(userName);
-    }
-
-    @When("Write InValidPassword {string}")
-    public void writeInPassword(String invalidPassword) {
-        loginpage.invalidPasswordYaz(invalidPassword);
-    }
-
-    @When("Write Invalid UserName {string}")
-    public void writeInvalidUserName(String invalidUserName) {
-        loginpage.invalidUserNameYaz(invalidUserName);
+    @When("Write Password {string}")
+    public void writePassword(String password) {loginpage.passwordYaz(password);
     }
 }

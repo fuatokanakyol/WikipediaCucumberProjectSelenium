@@ -15,14 +15,17 @@ public class DriverFactory {
 
     public static WebDriver initialize_Driver() {
         properties = ConfigReader.getProperties();
-        //String value = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
-        String value = ConfigReader.getProperties().getProperty("browser");
+        String value = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
+        //String value = ConfigReader.getProperties().getProperty("browser");
         if (value.equals("Chrome")) {
+            System.setProperty("webdriver.chrome.driver","./src/test/java/libraries/chromedriver.exe");
+
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
 
         } else if (value.equals("Firefox")) {
+            System.setProperty("webdriver.gecko.driver","./src/test/java/libraries/geckodriver.exe");
             driver = new FirefoxDriver();
         } else if (value.equals("Safari")) {
             driver = new SafariDriver();

@@ -2,12 +2,12 @@ package stepDefinitions;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import pages.WikiPediaSearchResultPage;
+import pages.SearchResultPage;
 import utils.DriverFactory;
 
 public class ResultPageSteps {
     WebDriver driver = DriverFactory.getDriver();
-    WikiPediaSearchResultPage resultPage =new WikiPediaSearchResultPage(driver);
+    SearchResultPage resultPage =new SearchResultPage(driver);
 
     @When("Click  search Button")
     public void click_search_button() {

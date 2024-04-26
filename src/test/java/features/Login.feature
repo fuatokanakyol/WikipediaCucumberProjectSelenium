@@ -1,35 +1,17 @@
+@debug
 Feature: Login Wikipedia
 
-  Scenario: Login with valid user
-  When Check Login Button
-  When Click Login Button
-  When Write Valid UserName "Fuatokanakyol"
-  When Write ValidPassword "Fuat.1234"
-  When Click Login
-  Then check LoginPage
-
-
-  Scenario: Login with invalid userName
+  Scenario Outline: Login with <username> and <password>
     When Check Login Button
     When Click Login Button
-    When Write Invalid UserName "AAAAAA"
-    When Write ValidPassword "Fuat.1234"
+    When Write UserName "<username>"
+    When Write Password "<password>"
     When Click Login
-    Then check Error Message
+    Then check <expected_result>
 
-  Scenario: Login with invalid Password
-    When Check Login Button
-    When Click Login Button
-    When Write Valid UserName "Fuatokanakyol"
-    When Write InValidPassword "123213131"
-    When Click Login
-    Then check Error Message
-
-
-  Scenario: Login with invalid Password and invalid userName
-    When Check Login Button
-    When Click Login Button
-    When Write Invalid UserName "BBBBBB"
-    When Write InValidPassword "F1232131"
-    When Click Login
-    Then check Error Message
+    Examples:
+      | username        | password    | expected_result   |
+      | Fuatokanakyol   | Fuat.1234   | LoginPage         |
+      | AAAAAA          | Fuat.1234   | Error Message     |
+      | Fuatokanakyol   | 123213131   | Error Message     |
+      | BBBBBB          | F1232131    | Error Message     |
